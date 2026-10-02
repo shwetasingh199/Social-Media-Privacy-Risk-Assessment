@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Privacy Assessment Report
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="brand">
+        PrivacyShield
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/assessment">Assessment</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+</header>
+
+<main class="report">
+
+    <section class="report-header">
+
+        <div class="badge">
+            Privacy Assessment Report
+        </div>
+
+        <h1>
+            Social Media Privacy Risk Assessment
+        </h1>
+
+        <p>
+            Assessment ID:
+            {{ result.assessment.assessment_id }}
+        </p>
+
+        <p>
+            Date:
+            {{ result.assessment.created_at }}
+        </p>
+
+    </section>
+
+    <section class="report-score">
+
+        <h2>
+            Overall Risk Score
+        </h2>
+
+        <div class="large-score">
+            {{ result.assessment.overall_score }}
+        </div>
+
+        <div class="risk-badge">
+            {{ result.assessment.risk_level }}
+        </div>
+
+    </section>
+
+    <section class="report-section">
+
+        <h2>
+            Category Scores
+        </h2>
+
+        <div class="category-report">
+
+            {% for category in result.category_scores %}
+
+            <div class="category-row">
+
+                <span>
+                    {{ category.category.replace("_", " ") }}
+                </span>
+
+                <strong>
+                    {{ category.score }}/100
+                </strong>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    <section class="report-section">
+
+        <h2>
+            Findings
+        </h2>
+
+        {% for finding in result.findings %}
+
+        <div class="finding-report">
+
+            <strong>
+                {{ finding.severity }}
+            </strong>
+
+            <h3>
+                {{ finding.finding_type }}
+            </h3>
+
+            <p>
+                {{ finding.description }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <section class="report-section">
+
+        <h2>
+            Recommendations
+        </h2>
+
+        {% for recommendation in result.recommendations %}
+
+        <div class="recommendation-report">
+
+            <strong>
+                {{ recommendation.priority }}
+            </strong>
+
+            <p>
+                {{ recommendation.recommendation }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </section>
+
+    <section class="report-section">
+
+        <h2>
+            Privacy Checklist
+        </h2>
+
+        <ul>
+
+            <li>Review profile visibility</li>
+            <li>Review contact information visibility</li>
+            <li>Review birth-date visibility</li>
+            <li>Review location sharing</li>
+            <li>Review tagging permissions</li>
+            <li>Review followers</li>
+            <li>Enable MFA</li>
+            <li>Enable login alerts</li>
+            <li>Review connected applications</li>
+            <li>Review old public posts</li>
+            <li>Never share verification codes</li>
+
+        </ul>
+
+    </section>
+
+    <section class="disclaimer">
+
+        <strong>
+            Educational Disclaimer
+        </strong>
+
+        <p>
+            This framework provides an educational
+            assessment based on self-reported privacy
+            practices. The score does not guarantee
+            that an account will or will not be
+            compromised.
+        </p>
+
+    </section>
+
+    <button
+        class="button primary"
+        onclick="window.print()">
+
+        Print / Save as PDF
+
+    </button>
+
+</main>
+
+</body>
+</html>

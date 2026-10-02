@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="brand">
+        PrivacyShield
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/assessment">Assessment</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+</header>
+
+<main class="dashboard">
+
+    <section class="page-heading">
+
+        <div class="badge">
+            Cybersecurity Dashboard
+        </div>
+
+        <h1>
+            Privacy Risk Overview
+        </h1>
+
+        <p>
+            Aggregate statistics are based on
+            stored synthetic/demo assessments.
+        </p>
+
+    </section>
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <span>
+                Total Assessments
+            </span>
+
+            <strong id="totalAssessments">
+                -
+            </strong>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span>
+                Average Risk Score
+            </span>
+
+            <strong id="averageScore">
+                -
+            </strong>
+
+        </div>
+
+    </section>
+
+    <section class="chart-grid">
+
+        <div class="chart-card">
+
+            <h2>
+                Risk Distribution
+            </h2>
+
+            <canvas id="riskChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h2>
+                Privacy Risk Model
+            </h2>
+
+            <div class="model-list">
+
+                <div>
+                    Profile Exposure
+                    <span>10%</span>
+                </div>
+
+                <div>
+                    Personal Information
+                    <span>15%</span>
+                </div>
+
+                <div>
+                    Location Exposure
+                    <span>15%</span>
+                </div>
+
+                <div>
+                    Content Exposure
+                    <span>10%</span>
+                </div>
+
+                <div>
+                    Connections
+                    <span>10%</span>
+                </div>
+
+                <div>
+                    Tagging
+                    <span>5%</span>
+                </div>
+
+                <div>
+                    Account Security
+                    <span>15%</span>
+                </div>
+
+                <div>
+                    Third-Party Apps
+                    <span>5%</span>
+                </div>
+
+                <div>
+                    Social Engineering
+                    <span>10%</span>
+                </div>
+
+                <div>
+                    Digital Footprint
+                    <span>5%</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}">
+</script>
+
+</body>
+</html>

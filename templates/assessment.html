@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Assessment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="brand">
+        PrivacyShield
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/assessment">Assessment</a>
+        <a href="/dashboard">Dashboard</a>
+    </nav>
+
+</header>
+
+<main class="assessment-container">
+
+    <section class="page-heading">
+
+        <div class="badge">
+            Privacy Assessment
+        </div>
+
+        <h1>
+            Review Your Privacy Practices
+        </h1>
+
+        <p>
+            Do not enter your actual phone number,
+            email address, password, home address,
+            private messages or exact location.
+        </p>
+
+    </section>
+
+    <form id="assessmentForm">
+
+        {% for question in questions %}
+
+        <div class="question-card">
+
+            <div class="question-number">
+                Question {{ loop.index }}
+            </div>
+
+            <h3>
+                {{ question.question }}
+            </h3>
+
+            <div class="options">
+
+                {% for option in question.options %}
+
+                <label class="option">
+
+                    <input
+                        type="radio"
+                        name="{{ question.id }}"
+                        value="{{ option }}"
+                        required
+                    >
+
+                    <span>
+                        {{ option.replace("_", " ") }}
+                    </span>
+
+                </label>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <button
+            type="submit"
+            class="button primary submit-button">
+
+            Generate Privacy Assessment
+
+        </button>
+
+    </form>
+
+    <div id="result"></div>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/assessment.js') }}">
+</script>
+
+</body>
+</html>
